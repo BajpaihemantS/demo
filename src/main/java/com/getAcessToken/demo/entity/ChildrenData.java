@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +15,12 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChildrenData {
+    @Id
     private String id;
     private String author_fullname;
     private String title;
-    private Integer subreddit_subscribers;
+    @JsonProperty("subreddit_subscribers")
+    private Integer subredditSubscribers;
 
     public String getId() {
         return id;
@@ -43,11 +46,11 @@ public class ChildrenData {
         this.title = title;
     }
 
-    public Integer getSubreddit_subscribers() {
-        return subreddit_subscribers;
+    public Integer getSubredditSubscribers() {
+        return subredditSubscribers;
     }
 
-    public void setSubreddit_subscribers(Integer subreddit_subscribers) {
-        this.subreddit_subscribers = subreddit_subscribers;
+    public void setSubreddit_subscribers(Integer subredditSubscribers) {
+        this.subredditSubscribers = subredditSubscribers;
     }
 }

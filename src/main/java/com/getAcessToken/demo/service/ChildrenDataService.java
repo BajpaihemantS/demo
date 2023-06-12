@@ -18,7 +18,6 @@ import java.util.Queue;
 
 @Service
 public class ChildrenDataService {
-    @Autowired
     private ChildrenDataRepository childrenDataRepository;
     private final MongoTemplate mongoTemplate;
 
@@ -34,12 +33,11 @@ public class ChildrenDataService {
             String requestBody  = "sr="+subreddit+"&title="+title+"&text="+content+"&kind="+kind;
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(accessToken);
-            headers.put("User-Agent", Collections.singletonList("tomcat:com.getAccessToken.demo.DemoApplication:v1.0 (by /u/Overall-Dimension354)"));
+//            headers.put("User-Agent", Collections.singletonList("tomcat:com.getAccessToken.demo.DemoApplication:v1.0 (by /u/Overall-Dimension354)"));
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
             RestTemplate restTemplate = new RestTemplate();
-           restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-
+            restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
             System.out.println("Post submitted successfully!");
         } catch (Exception e) {
             // Handle exception or error response
