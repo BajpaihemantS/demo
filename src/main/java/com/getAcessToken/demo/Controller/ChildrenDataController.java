@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.*;
 
 @RestController
@@ -28,10 +27,14 @@ public class ChildrenDataController {
     @GetMapping()
     public String setDataResponse() throws IOException {
 
+        Scanner sc =  new Scanner(System.in);
+        System.out.println("Enter the subreddit");
+        String s = sc.next();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         String authToken = getAuthToken();
-        String url = "https://oauth.reddit.com/r/mumbai/hot";
+        System.out.println(authToken);
+        String url = "https://oauth.reddit.com/r/"+s+"?limit=5&count=5";
         headers.setBearerAuth(authToken);
         headers.put("User-Agent", Collections.singletonList("tomcat:com.getAccessToken.demo.DemoApplication:v1.0 (by /u/Overall-Dimension354)"));
         HttpEntity<String> entity = new HttpEntity<String>("parameters",headers);

@@ -22,8 +22,9 @@ public class ChildrenDataService {
     private final MongoTemplate mongoTemplate;
 
     @Autowired
-    public ChildrenDataService(MongoTemplate mongoTemplate) {
+    public ChildrenDataService(MongoTemplate mongoTemplate, ChildrenDataRepository childrenDataRepository) {
         this.mongoTemplate = mongoTemplate;
+        this.childrenDataRepository = childrenDataRepository;
     }
 
     public void postToReddit(String accessToken, String subreddit, String title, String content, String kind) {
